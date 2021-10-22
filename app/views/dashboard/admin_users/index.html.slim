@@ -1,0 +1,52 @@
+.main-content
+  .container-fluid
+    .header
+      .header-body
+        .row.align-items-end
+          .col
+            .header-pretitle
+              h6 = t('.heading_sub')
+            h1.header-title = AdminUser.model_name.human
+          .col-auto
+            = link_to t('.csv'), dashboard_admin_users_path(admin_user: @search_query, format: :csv), class: 'btn btn-info lift ml-3'
+
+    = simple_form_for :q, url: dashboard_admin_users_path, method: :get do |f|
+      = f.input :name, label: 'Enter name of the admin user', input_html: { value: params.dig(:q, :name) }
+      = f.hidden_field :o, value: params[:o]
+      = f.hidden_field :d, value: params[:d]
+      = f.button :submit, t('.search'), class: 'btn btn-primary btn-sm', 'data-disable-with' => "#{t('.searching')}..."
+
+    .row.mt-4
+      .col-12
+        = link_to t('.new_admin_user'), new_dashboard_admin_user_path, class: 'btn btn-primary btn-sm pull-right'
+
+    .row.mt-4
+      .col-12
+        .card
+          .table-responsive
+            table.table.table-sm.card-table
+              thead
+                tr
+                  - %w[id email created_at updated_at name age].each do |column|
+                    th
+                      .d-flex
+                        .mr-2 = AdminUser.human_attribute_name(column.to_sym)
+                        - if params[:d]&.include?('asc') && params[:o]&.include?(column)
+                          = link_to '⋀', dashboard_admin_users_path(order_params(column, 'desc'))
+                        - else
+                          = link_to '⋁', dashboard_admin_users_path(order_params(column, 'asc'))
+                  th
+              tbody
+                - @admin_users.each do |admin_user|
+                  tr
+                    td = admin_user.id
+                    td = admin_user.email
+                    td = formatted_date(admin_user.created_at)
+                    td = formatted_date(admin_user.updated_at)
+                    td = admin_user.name
+                    td = admin_user.age
+                    td = link_to t('.show'), dashboard_admin_user_path(admin_user), class: 'btn btn-primary btn-sm'
+                    td = link_to t('.edit'), edit_dashboard_admin_user_path(admin_user), class: 'btn btn-primary btn-sm'
+                    td = link_to t('.delete'), dashboard_admin_user_path(admin_user), class: 'btn btn-primary btn-sm', method: :delete
+
+        = paginate @admin_users, views_prefix: 'dashboard'

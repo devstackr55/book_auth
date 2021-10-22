@@ -1,0 +1,8 @@
+- model_name_human = AdminUser.model_name.human
+
+= render 'admin_user_header', breadcrumb_action_text: "#{t('.edit')} #{model_name_human}", breadcrumb_action_link: "/dashboard/admin_users/#{@admin_user.id}/edit" do
+  .card-header
+    h4.card-header-title = "#{t('.edit')} #{model_name_human}"
+  .card-body
+    = simple_form_for(@admin_user, url: dashboard_admin_user_path(@admin_user), method: :put) do |f|
+      = render 'form_fields', f: f

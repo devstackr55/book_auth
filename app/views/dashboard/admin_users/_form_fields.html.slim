@@ -1,0 +1,10 @@
+- %i[email name age address phone].each do |attr|
+  .form-group
+    = f.input attr, input_html: { autocomplete: attr }
+.form-group
+  = f.input :password, input_html: { autocomplete: 'current-password' }
+.form-group
+  = f.input :password_confirmation, input_html: { autocomplete: 'current-password' }
+
+.form-actions
+  = f.button :submit, t('.save'), class: 'btn btn-primary btn-sm'

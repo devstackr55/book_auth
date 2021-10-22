@@ -1,0 +1,19 @@
+= render 'admin_user_header', breadcrumb_action_text: "#{t('.view')} #{AdminUser.model_name.human}", breadcrumb_action_link: "/dashboard/admin_users/#{@admin_user.id}" do
+  .card-header
+    h4.card-header-title = "#{AdminUser.model_name.human} #{t('.detailed_information')}"
+  .card-body
+    .list-group.list-group-flush.my-n3
+      - %i[created_at updated_at].each do |attr|
+          .list-group-item
+            .row.align-items-center
+              .col
+                .font-weight-base.mb-1 = AdminUser.human_attribute_name(attr)
+              .col-auto
+                = formatted_date(@admin_user.send(attr))
+      - %i[email name age address phone].each do |attr|
+          .list-group-item
+            .row.align-items-center
+              .col
+                .font-weight-base.mb-1 = AdminUser.human_attribute_name(attr)
+              .col-auto
+                = @admin_user.send(attr)

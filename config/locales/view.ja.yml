@@ -1,0 +1,28 @@
+ja:
+  common:
+    title: Assignment
+    description: Assignment
+  dashboard:
+    admin_users:
+      index:
+        heading_sub: 一覧
+        new_record: 新規作成
+        edit: 編集
+        show: 詳細
+        delete: 削除
+        search: 探す
+        searching: 検索中
+        new_admin_user: 新しい管理者ユーザー
+      show:
+        view: 詳細
+      edit:
+        edit: 編集
+      new:
+        new: 新着
+      form_fields:
+        save: セーブ
+      admin_user_header:
+        detailed_information: 詳細情報
+        edit: 編集
+        heading_sub: 詳細
+        new: 新着

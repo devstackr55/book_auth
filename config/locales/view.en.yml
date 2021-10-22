@@ -1,0 +1,28 @@
+en:
+  common:
+    title: Assignment
+    description: Assignment
+  dashboard:
+    admin_users:
+      index:
+        heading_sub: List
+        new_record: New
+        edit: Update
+        show: Show
+        delete: Delete
+        search: Search
+        searching: Searching
+        new_admin_user: New Admin User
+      show:
+        view: View
+      edit:
+        edit: Update
+      new:
+        new: New
+      form_fields:
+        save: Save
+      admin_user_header:
+        detailed_information: Detailed Information
+        edit: Update
+        heading_sub: Details
+        new: New
